@@ -1,0 +1,73 @@
+<div class="h-[208px] max-w-sm bg-primary rounded-lg p-1">
+    <div class="mx-auto">
+        <div class="flex items-center justify-between px-2 grow">
+            <span class="font-bold text-secondary font-inter">{{ recipe.name }}</span>
+            <div class="flex justify-between">
+                <span class="text-xs font-bold text-secondary font-inter">Profit per unit: </span>
+                <div class="flex mx-1">
+                    <img src="../../../../../assets/icon_silver.png" alt="silver image" class="w-auto h-4 mr-1" />
+                    <span class="text-xs font-bold text-secondary font-inter">1234 </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="recipe-info" class="flex w-[370px] h-[79px] bg-tertiary rounded-lg items-center px-2">
+            <div class="flex items-center justify-center w-16 h-16 rounded-lg bg-primary">
+                <img [src]="image" alt="{{ recipe.name }} image" />
+            </div>
+            <div class="flex items-start px-2 grow h-[64px]">
+                <div class="flex flex-col">
+                    <div class="flex">
+                        <div id="price" class="min-w-[75px]">
+                            <span class="text-xs font-bold text-secondary font-inter">Price</span>
+                            <div class="flex items-center">
+                                <img
+                                    src="../../../../../assets/icon_silver.png"
+                                    alt="silver image"
+                                    class="w-auto h-4"
+                                />
+                                <span class="px-1 text-xs font-bold text-secondary font-inter">{{
+                                    recipe.price | number
+                                }}</span>
+                            </div>
+                        </div>
+                        <div id="experience">
+                            <span class="text-xs font-bold text-secondary font-inter">Experience</span>
+                            <div class="flex items-center">
+                                <img src="../../../../../assets/experience.png" alt="exp image" class="w-auto h-4" />
+                                <span class="px-1 text-xs font-bold text-secondary font-inter">{{
+                                    recipe.experience | number
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="pt-2 text-xs font-bold font-inter text-secondary">
+                        Gathering Time: {{ recipe.growingTime / 60 / 60 }}
+                    </span>
+                </div>
+                <div class="mx-2 border border-secondary h-[64px]"></div>
+                <div class="flex flex-col h-[64px] justify-between">
+                    <span class="text-xs font-bold font-inter text-secondary">
+                        Minimum value to pay the cost:
+                        {{ (recipe.price / recipe.items[0].count[0]).toFixed() | number }}
+                    </span>
+                    <span class="text-xs font-bold text-secondary font-inter">Skill: {{ recipe.skillRequired }}</span>
+                </div>
+            </div>
+        </div>
+        <span class="font-bold text-secondary font-inter">Gathering</span>
+        <div id="recipe-info" class="flex w-[370px] h-[45px] bg-tertiary rounded-lg items-center px-2">
+            @for(item of recipe.items; track item) {
+            <div class="flex flex-col p-1">
+                <div class="flex items-center">
+                    <img src="../../../../../assets/items/{{ item.id }}.png" alt="" class="w-[22px]" />
+                    <span class="mx-1 text-xs font-bold text-secondary font-inter">{{ item.name }}</span>
+                </div>
+                <span class="text-xs font-bold text-secondary font-inter">{{
+                    item.count.toString().replace(',', ' - ')
+                }}</span>
+            </div>
+            }
+        </div>
+    </div>
+</div>

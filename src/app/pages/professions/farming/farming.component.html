@@ -1,3 +1,6 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
+<div class="flex flex-wrap items-center justify-center">
+    @for (recipe of recipes; track recipe) {
+    <app-recipe [recipe]="recipe" class="p-2"></app-recipe>
+    }
+</div>
+<app-market-items [itemList]="marketItems"></app-market-items>
